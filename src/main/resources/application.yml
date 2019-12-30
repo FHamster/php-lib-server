@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev
+#    active: release
+  application:
+    name: php-server
+
+
+#============================================================================================
+
+

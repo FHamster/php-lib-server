@@ -2,10 +2,8 @@ package cn.jmu.phpserver.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import lombok.Data;
 
 /**
@@ -27,8 +25,9 @@ public class Findrecord implements Serializable {
   /**
    * 用户号
    */
-  @Column(name = "user_id")
-  private String userId;
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @JoinColumn(name = "user_id")
+  Tuser tuser;
 
   /**
    * 金额

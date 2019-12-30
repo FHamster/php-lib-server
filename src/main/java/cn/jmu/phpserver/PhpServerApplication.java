@@ -1,6 +1,9 @@
 package cn.jmu.phpserver;
 
+import cn.jmu.phpserver.entities.Bdesc;
+import cn.jmu.phpserver.entities.Book;
 import cn.jmu.phpserver.entities.BookBorrowRec;
+import cn.jmu.phpserver.entities.Token;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +22,13 @@ public class PhpServerApplication {
     @Bean
     public RepositoryRestConfigurer repositoryRestConfigurer() {
         return RepositoryRestConfigurer.withConfig(
-                repositoryRestConfiguration -> repositoryRestConfiguration.exposeIdsFor(BookBorrowRec.class)
+                repositoryRestConfiguration -> {
+                    repositoryRestConfiguration.exposeIdsFor(BookBorrowRec.class);
+                    repositoryRestConfiguration.exposeIdsFor(Token.class);
+                    repositoryRestConfiguration.exposeIdsFor(Bdesc.class);
+                    repositoryRestConfiguration.exposeIdsFor(Book.class);
+                }
+
         );
     }
 }

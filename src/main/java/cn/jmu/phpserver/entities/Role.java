@@ -32,8 +32,6 @@ public class Role implements Serializable {
 
   /**
    * 说明
-            说明
-            
    */
   @Column(name = "role_description")
   private String roleDescription;

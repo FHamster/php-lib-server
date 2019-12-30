@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import javax.persistence.*;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 读者罚款记录
@@ -26,6 +27,8 @@ public class Findrecord implements Serializable {
    * 用户号
    */
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @GenericGenerator(name = "system-uuid", strategy = "uuid")
+  @GeneratedValue(generator = "system-uuid")
   @JoinColumn(name = "user_id")
   Tuser tuser;
 

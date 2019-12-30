@@ -1,11 +1,10 @@
 package cn.jmu.phpserver.entities;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 借阅要求
@@ -20,6 +19,8 @@ public class BorrowReq implements Serializable {
    * 借阅种类编号
    */
   @Id
+  @GenericGenerator(name = "system-uuid", strategy = "uuid")
+  @GeneratedValue(generator = "system-uuid")
   @Column(name = "bor_id", insertable = false, nullable = false)
   private String borId;
 

@@ -3,16 +3,14 @@ package cn.jmu.phpserver.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import javax.annotation.Resource;
+import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jdk.Exported;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.data.rest.core.annotation.RestResource;
 
 /**
  * 图书描述
@@ -52,7 +50,7 @@ public class Bdesc implements Serializable {
     /**
      * ISBN
      */
-    @Column(name = "ISBN", nullable = false)
+    @Column(name = "ISBN")
     private String bdesISBN;
 
     /**
@@ -73,6 +71,20 @@ public class Bdesc implements Serializable {
     @Column(name = "bdesc_store_place")
     private String bdescStorePlace;
 
+    //    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "book_author",
+//            joinColumns = @JoinColumn(name = "bdesc_id"),
+//            inverseJoinColumns = @JoinColumn(name = "author_id"))
+    @Column(name = "bdesc_authors")
+    private String bdescAuthors;
+
+    @Column(name = "bdesc_desc")
+    private String bdescDesc;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "bdescId")
+    List<Book> bookList;
 
     @CreatedDate
     @Column(name = "create_time")

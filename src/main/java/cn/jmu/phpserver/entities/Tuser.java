@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 用户
@@ -19,7 +20,9 @@ public class Tuser implements Serializable {
      * 用户号
      */
     @Id
-    @Column(insertable = false, name = "user_id", nullable = false)
+//    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+//    @GeneratedValue(generator = "system-uuid")
+    @Column(name = "user_id", nullable = false)
     private String userId;
 
     /**
@@ -50,7 +53,7 @@ public class Tuser implements Serializable {
      * 读者性别
      */
     @Column(name = "user_gender")
-    private Integer userGender;
+    private String userGender;
 
     /**
      * 读者邮箱
@@ -62,7 +65,7 @@ public class Tuser implements Serializable {
      * 读者状态
      */
     @Column(name = "user_status")
-    private Integer userStatus;
+    private String userStatus;
 
     /**
      * 读者电话

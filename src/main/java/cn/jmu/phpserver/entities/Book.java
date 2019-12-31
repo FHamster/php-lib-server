@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 /**
  * 图书
@@ -20,6 +21,7 @@ public class Book implements Serializable {
      * 图书ID
      */
     @Id
+    @RestResource(exported = false)
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @GeneratedValue(generator = "system-uuid")
     @Column(insertable = false, name = "book_id", nullable = false)
@@ -37,7 +39,7 @@ public class Book implements Serializable {
     @Column(name = "book_status")
     private String bookStatus;
 
+    @RestResource(exported = false)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "book")
     List<BookBorrowRec> BBRList;
-
 }
